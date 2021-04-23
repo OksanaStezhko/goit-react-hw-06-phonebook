@@ -17,7 +17,6 @@ class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log('this.props', this.props);
     this.props.onSubmitForm(this.state);
     this.resetForm();
   };
@@ -30,7 +29,6 @@ class Form extends Component {
   };
 
   render() {
-    // console.log('this.props', this.props);
     const { name, number } = this.state;
     return (
       <form className={style.form} onSubmit={this.handleSubmit}>
@@ -80,8 +78,8 @@ Form.propTypes = {
   number: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
-  contacts: { items: state.contacts.items },
+const mapStateToProps = ({ contacts: { items } }) => ({
+  contacts: { items },
 });
 
 const mapDispatchToProps = dispatch => ({

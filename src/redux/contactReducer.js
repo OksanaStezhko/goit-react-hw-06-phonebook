@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux';
-import shortid from 'shortid';
 
 import contactTypes from './contactTypes';
 
 const init = {
   items: [
-    { id: 1, name: 'Oksana', number: '+380679337495' },
-    { id: 2, name: 'Volodka', number: '+380679337495' },
-    { id: 3, name: 'Nady', number: '+380679337495' },
-    { id: 4, name: 'Vova', number: '+380679337495' },
+    { id: '1', name: 'Oksana', number: '+380679337495' },
+    { id: '2', name: 'Volodka', number: '+380679337495' },
+    { id: '3', name: 'Nady', number: '+380679337495' },
+    { id: '4', name: 'Vova', number: '+380679337495' },
   ],
   filter: '',
 };
@@ -20,12 +19,8 @@ const itemsReducer = (state = init.items, { type, payload }) => {
         alert(`${payload.name} is already in contacts`);
         return state;
       }
-      const newContact = {
-        id: shortid.generate(),
-        name: payload.name,
-        number: payload.number,
-      };
-      return [...state, newContact];
+
+      return [...state, payload];
 
     case contactTypes.DELETE_CONTACT:
       return state.filter(item => item.id !== payload);
