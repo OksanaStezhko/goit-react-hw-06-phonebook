@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import shortid from 'shortid';
 
+import contactTypes from './contactTypes';
+
 const init = {
   items: [
     { id: 1, name: 'Oksana', number: '+380679337495' },
@@ -13,7 +15,7 @@ const init = {
 
 const itemsReducer = (state = init.items, { type, payload }) => {
   switch (type) {
-    case 'form/addContact':
+    case contactTypes.ADD_CONTACT:
       if (state.find(item => item.name === payload.name)) {
         alert(`${payload.name} is already in contacts`);
         return state;
@@ -25,7 +27,7 @@ const itemsReducer = (state = init.items, { type, payload }) => {
       };
       return [...state, newContact];
 
-    case 'form/deleteContact':
+    case contactTypes.DELETE_CONTACT:
       return state.filter(item => item.id !== payload);
 
     default:
@@ -34,7 +36,7 @@ const itemsReducer = (state = init.items, { type, payload }) => {
 };
 const filterReducer = (state = init.filter, { type, payload }) => {
   switch (type) {
-    case 'form/changeFilter':
+    case contactTypes.CHANGE_FILTER:
       return payload;
 
     default:

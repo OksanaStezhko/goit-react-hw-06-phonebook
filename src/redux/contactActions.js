@@ -1,17 +1,19 @@
+import contactTypes from './contactTypes';
+
 export const addContact = value => {
   return {
-    type: 'form/addContact',
+    type: contactTypes.ADD_CONTACT,
     payload: value,
   };
 };
 
 export const deleteContact = value => ({
-  type: 'form/deleteContact',
+  type: contactTypes.DELETE_CONTACT,
   payload: value,
 });
 
 export const changeFilter = value => ({
-  type: 'form/changeFilter',
+  type: contactTypes.CHANGE_FILTER,
   payload: value,
 });
 

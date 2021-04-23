@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as formActions from '../../redux/actions';
+import * as formActions from '../../redux/contactActions';
 
 import PropTypes from 'prop-types';
 import style from './Filter.module.css';
