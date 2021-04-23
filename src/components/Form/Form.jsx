@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as formActions from '../../redux/actions';
+
 import style from './Form.module.css';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
@@ -14,6 +17,7 @@ class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    // console.log('this.props', this.props);
     this.props.onSubmitForm(this.state);
     this.resetForm();
   };
@@ -26,6 +30,7 @@ class Form extends Component {
   };
 
   render() {
+    // console.log('this.props', this.props);
     const { name, number } = this.state;
     return (
       <form className={style.form} onSubmit={this.handleSubmit}>
@@ -65,9 +70,23 @@ class Form extends Component {
   }
 }
 
-Form.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+Form.defaultProps = {
+  name: '',
+  number: '',
 };
 
-export default Form;
+Form.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+};
+
+const mapStateToProps = state => ({
+  contacts: { items: state.contacts.items },
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSubmitForm: (name, number) =>
+    dispatch(formActions.addContact(name, number)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
