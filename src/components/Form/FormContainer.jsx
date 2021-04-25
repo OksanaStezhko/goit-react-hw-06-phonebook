@@ -1,15 +1,14 @@
-// import { connect } from 'react-redux'; // Импорт функции коннекта к хранилищу
-// import * as formActions from '../../redux/actions';
+import { connect } from 'react-redux'; // Импорт функции коннекта к хранилищу
+import { addContact } from '../../redux/contactActions';
 
-// import Form from './Form';
+import Form from './Form';
 
-// const mapStateToProps = state => ({
-//   contacts: state.contacts.items,
-// });
+const mapStateToProps = ({ contacts: { items } }) => ({
+  contacts: { items },
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   onSubmitForm: (name, number) =>
-//     dispatch(formActions.addContact(name, number)),
-// });
+const mapDispatchToProps = dispatch => ({
+  onSubmitForm: (name, number) => dispatch(addContact(name, number)),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
